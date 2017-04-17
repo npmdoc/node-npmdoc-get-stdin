@@ -1,1 +1,39 @@
-{     "devDependencies": {         "get-stdin": "*",         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmdoc-get-stdin",     "homepage": "https://github.com/npmdoc/node-npmdoc-get-stdin",     "repository": {         "type": "git",         "url": "https://github.com/npmdoc/node-npmdoc-get-stdin.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "api documentation for [get-stdin (v5.0.1)](https://github.com/sindresorhus/get-stdin) [![npm package](https://img.shields.io/npm/v/npmdoc-get-stdin.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-get-stdin) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-get-stdin.svg)](https://travis-ci.org/npmdoc/node-npmdoc-get-stdin)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "get-stdin": "*",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-get-stdin",
+    "keywords": [
+        "documentation",
+        "get-stdin"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_get_stdin.js",
+    "name": "npmdoc-get-stdin",
+    "nameAlias": "npmdoc_get_stdin",
+    "nameOriginal": "npmdoc-get-stdin",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmdoc/node-npmdoc-get-stdin.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}
