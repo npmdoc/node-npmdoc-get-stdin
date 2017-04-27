@@ -49,6 +49,8 @@
 <h1>api documentation for
     <a
 
+        href="https://github.com/sindresorhus/get-stdin"
+
     >get-stdin (v5.0.1)</a>
 </h1>
 <h4>Get stdin as a string or buffer</h4>
@@ -72,6 +74,37 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.get-stdin.buffer">
             function <span class="apidocSignatureSpan">get-stdin.</span>buffer
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.get-stdin.index">
+            function <span class="apidocSignatureSpan">get-stdin.</span>index
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.get-stdin.index">module get-stdin.index</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.get-stdin.index.index">
+            function <span class="apidocSignatureSpan">get-stdin.</span>index
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.get-stdin.index.buffer">
+            function <span class="apidocSignatureSpan">get-stdin.index.</span>buffer
             <span class="apidocSignatureSpan">()</span>
             </a>
 
@@ -124,6 +157,135 @@
     <h2>
         <a href="#apidoc.element.get-stdin.buffer" id="apidoc.element.get-stdin.buffer">
         function <span class="apidocSignatureSpan">get-stdin.</span>buffer
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">buffer = function () {
+	var ret = [];
+	var len = 0;
+
+	return new Promise(function (resolve) {
+		if (stdin.isTTY) {
+			resolve(new Buffer(&#x27;&#x27;));
+			return;
+		}
+
+		stdin.on(&#x27;readable&#x27;, function () {
+			var chunk;
+
+			while ((chunk = stdin.read())) {
+				ret.push(chunk);
+				len += chunk.length;
+			}
+		});
+
+		stdin.on(&#x27;end&#x27;, function () {
+			resolve(Buffer.concat(ret, len));
+		});
+	});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### getStdin()
+
+Get `stdin` as a string.
+
+In a TTY context, a promise that resolves to an empty string is returned.
+
+### getStdin.<span class="apidocCodeKeywordSpan">buffer</span>()
+
+Get `stdin` as a buffer.
+
+In a TTY context, a promise that resolves to an empty buffer is returned.
+
+
+## Related
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.get-stdin.index" id="apidoc.element.get-stdin.index">
+        function <span class="apidocSignatureSpan">get-stdin.</span>index
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">index = function () {
+	var ret = &#x27;&#x27;;
+
+	return new Promise(function (resolve) {
+		if (stdin.isTTY) {
+			resolve(ret);
+			return;
+		}
+
+		stdin.setEncoding(&#x27;utf8&#x27;);
+
+		stdin.on(&#x27;readable&#x27;, function () {
+			var chunk;
+
+			while ((chunk = stdin.read())) {
+				ret += chunk;
+			}
+		});
+
+		stdin.on(&#x27;end&#x27;, function () {
+			resolve(ret);
+		});
+	});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.get-stdin.index" id="apidoc.module.get-stdin.index">module get-stdin.index</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.get-stdin.index.index" id="apidoc.element.get-stdin.index.index">
+        function <span class="apidocSignatureSpan">get-stdin.</span>index
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">index = function () {
+	var ret = &#x27;&#x27;;
+
+	return new Promise(function (resolve) {
+		if (stdin.isTTY) {
+			resolve(ret);
+			return;
+		}
+
+		stdin.setEncoding(&#x27;utf8&#x27;);
+
+		stdin.on(&#x27;readable&#x27;, function () {
+			var chunk;
+
+			while ((chunk = stdin.read())) {
+				ret += chunk;
+			}
+		});
+
+		stdin.on(&#x27;end&#x27;, function () {
+			resolve(ret);
+		});
+	});
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.get-stdin.index.buffer" id="apidoc.element.get-stdin.index.buffer">
+        function <span class="apidocSignatureSpan">get-stdin.index.</span>buffer
         <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
